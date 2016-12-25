@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryWhite</item>-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!--Action Sheet style-->
+        <!--<item name="actionSheetStyle">@style/ActionSheetStyleiOS7</item>-->
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MemberListTabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <!--<item name="android:textSize">18sp</item>-->
+    </style>
+
+    <style name="table_style">
+        <item name="android:layout_marginTop">2sp</item>
+        <item name="android:layout_marginBottom">2sp</item>
+        <item name="android:layout_marginLeft">8sp</item>
+        <item name="android:layout_marginRight">8sp</item>
+    </style>
+
+    <style name="BB_BottomBarItem_TitleStyle">
+        <item name="android:maxLines">1</item>
+        <item name="android:height">24dp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+</resources>

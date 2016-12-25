@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_my_policy_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/fragment_info_bottom_layout">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/fragment_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_gray_bar"
+                android:gravity="center"
+                android:paddingBottom="7dp"
+                android:paddingTop="8dp"
+                android:text="目前通關進度"
+                android:textColor="@color/colorPrimaryWhite"
+                android:textSize="13sp" />
+
+            <!--divider-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@color/member_detail_divider" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragment_info_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white_background"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        tools:context="com.richi.insurance.PersonalInfoSalesActivity">
+
+        <Button
+            android:id="@+id/fragment_info_clear_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/pink_white_roundedbtn"
+            android:gravity="center"
+            android:text="清除所有資料"
+            android:textColor="@color/background_pink"
+            android:textSize="15sp"
+            android:visibility="visible" />
+    </LinearLayout>
+</RelativeLayout>

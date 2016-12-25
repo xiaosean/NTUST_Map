@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0ABAB5</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimaryWhite">#FFFFFF</color>
+    <color name="colorAccent">#3ACBC6</color>
+    <color name="listTabUnfocus">#000000</color>
+    <color name="listTabFocus">#F9F9F9</color>
+    <color name="background">#D8D8D8</color>
+    <color name="tab_text_selected">#0097A3</color>
+    <color name="tab_text_unselected">#ACACAC</color>
+    <color name="title_text">#FFFFFF</color>
+    <color name="bottom_tab_inactive">#8D8D8D</color>
+    <color name="bottom_tab_active">#0097A3</color>
+    <color name="edit_text_background">#9B9B9B</color>
+    <color name="white_background">#FFFFFF</color>
+    <color name="default_green">#0ABAB5</color>
+    <color name="default_gray">#969696</color>
+    <color name="home_sales_blue">#0A94BA</color>
+    <color name="member_list_empty_text_background">#5C5C5C</color>
+    <color name="personal_info_fin_btn_background">#F8F8F8</color>
+    <color name="personal_info_divider_color">#DDDDDD</color>
+    <color name="text_color_green">#0097A3</color>
+    <color name="text_color_gray">#747474</color>
+    <color name="member_detail_textView">#6E6E6E</color>
+    <color name="member_detail_divider">#EFEFEF</color>
+    <color name="member_detail_button_pressed">#99DB636D</color>
+    <color name="member_detail_rating_button">#FFFCD5</color>
+    <color name="action_sheet_title">#8F8E94</color>
+    <color name="member_list_filter_divider">#33FFFFFF</color>
+    <color name="member_list_filter_gray_text">#CACACA</color>
+    <color name="delete_button_color">#FF0000</color>
+    <color name="daily_question_question_color">#2A2A2A</color>
+    <color name="question_number_color">#8F8F8F</color>
+    <color name="fold_gray_bar">#9F9F9F</color>
+    <color name="eight_eight">#888888</color>
+    <color name="new_question_border_color">#33F8F8F8</color>
+    <color name="gray_rated_button">#CCCCCC</color>
+    <color name="gray_rated_text">#B0B0B0</color>
+
+    <color name="shadow_dark">#7F000000</color>
+    <color name="press_gray">#7F888888</color>
+    <color name="background_black">#3F3F3F</color>
+    <color name="background_gray_bar">#C3C3C3</color>
+    <color name="background_green_gradient_start">#00B8B5</color>
+    <color name="background_green_gradient_end">#65D9D8</color>
+    <color name="background_pink">#DB636D</color>
+    <color name="list_green">#3ACBC6</color>
+    <color name="dialog_blue_text">#0076FF</color>
+    <color name="member_detail_level_up">#FFFCD5</color>
+    <color name="gray_text">#6E6E6E</color>
+    <color name="border_yellow">#FFFCD5</color>
+    <color name="inner_yellow">#FFF5D5</color>
+    <color name="inner_gray">#D5D5D5</color>
+    <color name="client_shadow">#089490</color>
+    <color name="client_ban_gray">#9A9A9A</color>
+    <color name="sale_shadow">#0A7390</color>
+    <color name="sale_status_purple">#DB636D</color>
+    <color name="no_color">#00000000</color>
+
+
+</resources>
