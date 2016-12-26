@@ -9,42 +9,49 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@drawable/bg_index"
     tools:context="com.xiaosean.googlemaptest.MainActivity">
 
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_height = "wrap_content"
-        android:layout_width = "wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/logo_logo" />
+    <!--<ImageView-->
+        <!--android:id="@+id/icon"-->
+        <!--android:layout_height = "200dp"-->
+        <!--android:layout_width = "200dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:foreground="@drawable/logo"/>-->
+
     <Button
         android:id="@+id/start_button"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:background="@drawable/home_start_roundedbtn_anim"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:textColor="@color/white_background"
         android:text="@string/start_btn"
-        android:textSize="16dp" />
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center_horizontal"
         android:ellipsize="end"
         android:singleLine="true"
+        android:textColor="@color/background_black"
         android:text="－ OR －"
-        android:textSize="12dp" />
+        android:textSize="30dp" />
 
     <Button
         android:id="@+id/setting_button"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/home_setting_roundedbtn_anim"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/white_background"
         android:text="@string/setting_btn"
-        android:textSize="16dp" />
+        android:textSize="20dp" />
 </LinearLayout>

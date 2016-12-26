@@ -2,11 +2,11 @@
 <tabs>
     <tab
         id="@+id/tab_map"
-        icon="@drawable/tab_map_fixed"
+        icon="@drawable/ic_add_location_black_24dp"
         title="@string/tab_map" />
     <tab
         id="@+id/tab_info"
-        icon="@drawable/tab_info_fixed"
+        icon="@drawable/ic_beenhere_black_24dp"
         title="@string/tab_info" />
 
 </tabs>

@@ -46,13 +46,11 @@ public class SiteDetailActivity extends AppCompatActivity {
     private void setDict() {
         siteDict = new ArrayList<>();
         siteDict.add(new ArrayList<String>(
-                Arrays.asList("大砲池", "我就是愛嘴砲")));
-        siteDict.add(new ArrayList<String>(
                 Arrays.asList("烏龜池", "我就是愛玩水")));
         siteDict.add(new ArrayList<String>(
-                Arrays.asList("一餐", "我就是愛吃飯")));
+                Arrays.asList("大砲池", "我就是愛嘴砲")));
         siteDict.add(new ArrayList<String>(
-                Arrays.asList("RB綜合研究大樓", "我就是愛研究")));
+                Arrays.asList("生態池", "我就是愛吃菜")));
     }
     private void processViews() {
         layout = (RelativeLayout) findViewById(R.id.site_detail_layout);
