@@ -20,6 +20,9 @@ import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class InfoFragment extends Fragment {
     private View rootView;
@@ -27,9 +30,8 @@ public class InfoFragment extends Fragment {
     private static int POLICY_SWIPE_LAYOUT_ID = 3000;
     private static int POLICY_DIVIDER_ID = 5000;
     private Button clearBtn;
-    private int CLEAR_BUTTON = 999;
-    private int mGetPolicySize = 0;
     private boolean lock = false;
+    private final String SUCCESS = "達成", FAILED = "尚未達成";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,46 +63,48 @@ public class InfoFragment extends Fragment {
 
     private void processViews(View view) {
         myContainer = (LinearLayout) view.findViewById(R.id.fragment_info_container);
-        clearBtn = (Button) view.findViewById(R.id.fragment_info_clear_btn);
+//        clearBtn = (Button) view.findViewById(R.id.fragment_info_clear_btn);
     }
 
     private void processControllers(View view) {
-        clearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                deleteAllSite();
-
-            }
-        });
+//        clearBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                resetAllSite();
+//
+//            }
+//        });
         myContainer.addView(newDivider(0));
-        addSite("大砲池", "達成", 0);
-        addSite("烏龜池", "達成", 1);
-        addSite("一餐", "達成", 2);
-        addSite("RB綜合研究大樓", "尚未達成", 3);
+        addSite("大砲池", SUCCESS, 0);
+        addSite("烏龜池", SUCCESS, 1);
+        addSite("生態池", FAILED, 2);
 
     }
 
-    private void addSite(String type, String value, final int siteId) {
-        mGetPolicySize++;
+    private void addSite(final String type, String value, final int siteId) {
         final SwipeLayout swipeLayout = newCustomSwipeLayout(type, value, siteId);
+//        swipeLayout.setDrawingCacheBackgroundColor(getResources().getColor(R.color.inner_gray));
+//        if(value.equals(SUCCESS))
+//            swipeLayout.setDrawingCacheBackgroundColor(getResources().getColor(R.color.background_green_gradient_start));
         final View div = newDivider(siteId);
         myContainer.addView(swipeLayout);
         myContainer.addView(div);
         swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
         TextView delete = (TextView) swipeLayout.findViewById(R.id.swipe_del_button);
+        final TextView swipeValue = (TextView) swipeLayout.findViewById(R.id.swipe_value);
 //        LinearLayout bar = (LinearLayout) swipeLayout.findViewById(R.id.swipe_layout);
         swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
             @Override
             public void onStartOpen(SwipeLayout layout) {
-                Thread th = new Thread(){
+                Thread th = new Thread() {
                     @Override
                     public void run() {
                         super.run();
                         lock = true;
                         try {
                             sleep(1000);
+                        } catch (Exception e) {
                         }
-                        catch (Exception e){}
                         lock = false;
                     }
                 };
@@ -114,15 +118,15 @@ public class InfoFragment extends Fragment {
 
             @Override
             public void onStartClose(SwipeLayout layout) {
-                Thread th = new Thread(){
+                Thread th = new Thread() {
                     @Override
                     public void run() {
                         super.run();
                         lock = true;
                         try {
                             sleep(1000);
+                        } catch (Exception e) {
                         }
-                        catch (Exception e){}
                         lock = false;
                     }
                 };
@@ -148,11 +152,13 @@ public class InfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.i("test swipeLayout", String.valueOf(siteId));
-                if(!lock){
-                    Intent intent = new Intent(getActivity(), SiteDetailActivity.class);
-                    intent.putExtra("siteId", siteId);
-                    startActivity(intent);
-                }
+                //Can watch video
+                if (swipeValue.getText().toString().equals(SUCCESS))
+                    if (!lock) {
+                        Intent intent = new Intent(getActivity(), SiteDetailActivity.class);
+                        intent.putExtra("siteId", siteId);
+                        startActivity(intent);
+                    }
 
             }
         });
@@ -160,25 +166,21 @@ public class InfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("click", "del");
-                mGetPolicySize--;
-                myContainer.removeView(swipeLayout);
-                myContainer.removeView(div);
+                swipeValue.setText(FAILED);
+                swipeLayout.setBackgroundColor(getResources().getColor(R.color.inner_gray));
+
             }
         });
     }
 
-    private void deleteAllSite() {
+    private void resetAllSite() {
         try {
-            for (int i = 0; i <= mGetPolicySize; ++i) {
-                myContainer.removeViewAt(i + 2);
-                myContainer.removeViewAt(i + 2);
-            }
-        }
-        catch (Exception e){
+            addSite("大砲池", "尚未達成", 0);
+            addSite("烏龜池", "尚未達成", 1);
+            addSite("生態池", "尚未達成", 2);
+        } catch (Exception e) {
 
         }
-
-        mGetPolicySize = 0;
     }
 
     private View newDivider(int siteId) {
@@ -205,7 +207,7 @@ public class InfoFragment extends Fragment {
         bottom.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
 //        bottom.setId(R.id.swipe_layout);
         TextView delete = new TextView(context);
-        delete.setText("Delete");
+        delete.setText("Reset");
         delete.setTextColor(getResources().getColor(R.color.colorPrimaryWhite));
         dpAsPixels = (int) (8 * scale + 0.5f);
         delete.setPadding(dpAsPixels, 0, dpAsPixels, 0);
@@ -238,6 +240,7 @@ public class InfoFragment extends Fragment {
         iValue.setTextColor(getResources().getColor(R.color.member_detail_textView));
         iValue.setTextSize(20);
         iValue.setBackgroundColor(getResources().getColor(R.color.white_background));
+        iValue.setId(R.id.swipe_value);
         surface.addView(iValue);
         swipe.addView(surface);
         return swipe;

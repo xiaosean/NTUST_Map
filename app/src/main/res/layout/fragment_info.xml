@@ -51,20 +51,20 @@
         android:layout_marginTop="16dp"
         tools:context="com.richi.insurance.PersonalInfoSalesActivity">
 
-        <Button
-            android:id="@+id/fragment_info_clear_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:background="@drawable/pink_white_roundedbtn"
-            android:gravity="center"
-            android:text="清除所有資料"
-            android:textColor="@color/background_pink"
-            android:textSize="15sp"
-            android:visibility="visible" />
+        <!--<Button-->
+            <!--android:id="@+id/fragment_info_clear_btn"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginLeft="70dp"-->
+            <!--android:layout_marginRight="70dp"-->
+            <!--android:background="@drawable/pink_white_roundedbtn"-->
+            <!--android:gravity="center"-->
+            <!--android:text="清除所有資料"-->
+            <!--android:textColor="@color/background_pink"-->
+            <!--android:textSize="15sp"-->
+            <!--android:visibility="visible" />-->
     </LinearLayout>
 </RelativeLayout>
