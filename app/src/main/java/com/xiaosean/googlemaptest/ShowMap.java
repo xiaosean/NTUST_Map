@@ -129,18 +129,17 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 14.0f));
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lon))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_face_white_24dp))
                 .title("You are here."));
 //        ((NTUST_MAP_Fragment) ).checkLocation(currLoc);
     }
 
-    public void pan2Home(double lat, double lon) {
+    public void showUserPos() {
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 16.0f));
-        map.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).icon(BitmapDescriptorFactory.fromResource(R.drawable.red_point)).title(("Home")));
+        map.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_face_white_24dp)).title(("You")));
     }
 
     void updataePlaces() {
-        Log.i("test", "GetPlaces().execute()");
-
         new GetPlaces().execute();
 
     }
@@ -210,10 +209,15 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
                         String placeName = aPlace.getString("name");
                         JSONObject loc = aPlace.getJSONObject("geometry").getJSONObject("location");
                         LatLng placeLL = new LatLng(Double.valueOf(loc.getString("lat")), Double.valueOf(loc.getString("lng")));
+                        Log.i("test aPlace", aPlace.toString());
+                        Log.i("test placeAdd", placeAdd);
+                        Log.i("test placeName", placeName);
+                        Log.i("test loc", loc.toString());
+                        Log.i("test placeLL", placeLL.toString());
                         aPlaceMarkerOpt[p] = new MarkerOptions()
                                 .position(placeLL)
                                 .title(placeName)
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_point))
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.red_point))
                                 .snippet(placeAdd);
                         placeMarkers[p] = map.addMarker(aPlaceMarkerOpt[p]);
                     }

@@ -28,7 +28,6 @@ public class NTUST_MAP_Fragment extends Fragment {
     double outCampustDist = 0;
     int lastStatus = 1, currStatus = 1;
     Location mostRecentLocation = null;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

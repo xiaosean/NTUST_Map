@@ -22,6 +22,7 @@ import com.daimajia.swipe.SwipeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class InfoFragment extends Fragment {
@@ -75,9 +76,12 @@ public class InfoFragment extends Fragment {
 //            }
 //        });
         myContainer.addView(newDivider(0));
-        addSite("大砲池", SUCCESS, 0);
-        addSite("烏龜池", SUCCESS, 1);
-        addSite("生態池", FAILED, 2);
+        List siteList =((GlobalVariable) getActivity().getApplication()).getSiteInfoList();
+        for(Object eachList: siteList){
+            List list = (List) eachList;
+            addSite((String)list.get(0), (String)list.get(2), (int)list.get(3));
+        }
+
 
     }
 
@@ -243,6 +247,8 @@ public class InfoFragment extends Fragment {
         iValue.setId(R.id.swipe_value);
         surface.addView(iValue);
         swipe.addView(surface);
+        if(value.equals(FAILED))
+            swipe.setEnabled(false);
         return swipe;
     }
 

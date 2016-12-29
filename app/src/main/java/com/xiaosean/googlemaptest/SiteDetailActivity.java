@@ -28,7 +28,6 @@ public class SiteDetailActivity extends AppCompatActivity  implements EasyVideoC
     private Button button;
     private TextView actionBarTitle, title, content, date;
     private RelativeLayout layout;
-    private List<List<String>> siteDict;
     private EasyVideoPlayer vPlayer;
 
     @Override
@@ -63,29 +62,17 @@ public class SiteDetailActivity extends AppCompatActivity  implements EasyVideoC
         // set video title/conten/video
         setData();
     }
-    private void setDict() {
-        siteDict = new ArrayList<>();
-        //index 0
-        siteDict.add(new ArrayList<String>(
-                Arrays.asList("大砲池", "我就是愛嘴砲", String.valueOf(R.raw.bomb))));
-        //index 1
-        siteDict.add(new ArrayList<String>(
-                Arrays.asList("烏龜池", "我就是愛玩水", String.valueOf(R.raw.turtle1))));
-        //index 2
-        siteDict.add(new ArrayList<String>(
-                Arrays.asList("生態池", "我就是愛吃菜", String.valueOf(R.raw.turtle2))));
-    }
     private void setData() {
         //get each site title/content/video_id
-        setDict();
-
         Intent intent = getIntent();
         int siteId = intent.getIntExtra("siteId", 0);
-        title.setText(siteDict.get(siteId).get(0));
-        content.setText(siteDict.get(siteId).get(1));
+        Object obj = ((GlobalVariable)getApplicationContext()).siteInfoList.get(siteId);
+        List dataList = (List) obj;
+        title.setText((String)dataList.get(0));
+        content.setText((String)dataList.get(1));
 // Sets the source to the HTTP URL held in the TEST_URL variable.
         // To play files, you can use Uri.fromFile(new File("..."))
-        int videoId = Integer.valueOf(siteDict.get(siteId).get(2)); //videoId
+        int videoId = (int)dataList.get(4); //videoId
         String path = "android.resource://" + getPackageName() + "/" + videoId;
         vPlayer.setSource(Uri.parse(path));
     }

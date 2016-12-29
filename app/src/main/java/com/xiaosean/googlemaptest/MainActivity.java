@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void processControllers() {
+        ((GlobalVariable) getApplication()).setDefaultData();
 //        設定監聽
         startBtn.setOnClickListener(new click_listener());
         settingBtn.setOnClickListener(new click_listener());
