@@ -14,12 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.List;
-
 public class NTUST_MAP_Fragment extends Fragment {
     private View rootView;
     TextView txtGoal;
-    TextView txtcanon,txtturtle,txtnature;
+    TextView txtcanon, txtturtle, txtnature;
     Button btnHome, btnVin;
     ShowMap mapFrag;
     //    String phoneNo = "0919451088";
@@ -27,11 +25,13 @@ public class NTUST_MAP_Fragment extends Fragment {
             "25.015941&&121.542484",
             "25.012537&&121.545178",
             "25.010272&&121.541745"};
-    double[] distance = {0,0,0};
+    double[][] pool_locations = {{25.013554,121.540795},{25.014100,121.541816},{25.013396,121.542155}};
+    double[] distance = {0, 0, 0};
     double[] ntustCenter = {25.013421, 121.541785};
     double outCampustDist = 0;
     int lastStatus = 1, currStatus = 1;
     Location mostRecentLocation = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +50,9 @@ public class NTUST_MAP_Fragment extends Fragment {
 
         try {
             rootView = inflater.inflate(R.layout.fragment_ntust_map, container, false);
-            txtcanon = (TextView)rootView.findViewById(R.id.canon);
-            txtturtle = (TextView)rootView.findViewById(R.id.turtle);
-            txtnature = (TextView)rootView.findViewById(R.id.nature);
+            txtcanon = (TextView) rootView.findViewById(R.id.canon);
+            txtturtle = (TextView) rootView.findViewById(R.id.turtle);
+            txtnature = (TextView) rootView.findViewById(R.id.nature);
 //            rootView.scrollTo(0,0);
         } catch (InflateException e) {
             //already created, just return
@@ -90,20 +90,19 @@ public class NTUST_MAP_Fragment extends Fragment {
         checkDistance();
     }
 
-    private void checkDistance(){
+    private void checkDistance() {
         String currPoint = mostRecentLocation.getLatitude() + "&&" + mostRecentLocation.getLongitude();
 
         double[] point1 = new double[]{mostRecentLocation.getLatitude(), mostRecentLocation.getLongitude()};
 
-        for(int i = 0;i < 3;i++) {
-            Object obj = ((GlobalVariable)getActivity().getApplicationContext()).siteInfoList.get(i);
-            List dataList = (List) obj;
-            double[] point2 = new double[]{(double)dataList.get(5), (double)dataList.get(6)};
+        for (int i = 0; i < 3; i++) {
+
+            double[] point2 = new double[]{(double) pool_locations[i][0], (double) pool_locations[i][1]};
             distance[i] = distHaversine(point1, point2);
         }
-        txtcanon.setText(String.format("%.2f", distance[0]));
-        txtturtle.setText(String.format("%.2f", distance[1]));
-        txtnature.setText(String.format("%.2f", distance[2]));
+        txtcanon.setText(String.format("%.4f", distance[0]));
+        txtturtle.setText(String.format("%.4f", distance[1]));
+        txtnature.setText(String.format("%.4f", distance[2]));
     }
 
     private double distHaversine(double[] p1, double[] p2) {
@@ -114,7 +113,7 @@ public class NTUST_MAP_Fragment extends Fragment {
             radius = 6356.752;
         double distLat = rad2deg(p2[0] - p1[0]);
         double distLon = rad2deg(p2[1] - p1[1]);
-        double a = Math.sin(distLat/2) * Math.sin(distLat/2) + Math.cos(rad2deg(p1[0])) * Math.cos(rad2deg(p2[0])) *
+        double a = Math.sin(distLat / 2) * Math.sin(distLat / 2) + Math.cos(rad2deg(p1[0])) * Math.cos(rad2deg(p2[0])) *
                 Math.sin(distLon / 2) * Math.sin(distLon / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return radius * c;
