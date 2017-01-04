@@ -1,4 +1,5 @@
 package com.xiaosean.googlemaptest;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 public class NTUST_MapActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private BottomBar bottomBar;
+    private NTUST_MAP_Fragment map_fragment = new NTUST_MAP_Fragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,10 @@ public class NTUST_MapActivity extends AppCompatActivity {
 
     }
 
+    public void checkdistance(Location loc){
+        map_fragment.checkLocation(loc);
+    }
+
     private void setBottomBar() {
         fragmentManager = getSupportFragmentManager();
         bottomBar.animate().cancel();
@@ -48,7 +54,7 @@ public class NTUST_MapActivity extends AppCompatActivity {
             public void onTabSelected(@IdRes int tabId) {
                 try {
                     if (tabId == R.id.tab_map) {
-                        fragmentManager.beginTransaction().replace(R.id.activity_ntust_map_fragment_container, new NTUST_MAP_Fragment(), "NTUST_MAP").commit();
+                        fragmentManager.beginTransaction().replace(R.id.activity_ntust_map_fragment_container, map_fragment, "NTUST_MAP").commit();
                     } else if (tabId == R.id.tab_info) {
                         fragmentManager.beginTransaction().replace(R.id.activity_ntust_map_fragment_container, new InfoFragment(), "INFO").commit();
                     }

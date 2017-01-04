@@ -27,9 +27,9 @@ public class GlobalVariable extends Application {
 //        NAME(0), CONTENT, FLAG, POS_ID, FILE_ID, LAT, LNG
 //    }
     public void setDefaultData(){
-        siteInfoList.add(Arrays.asList("大砲池", "我就是愛嘴砲", SUCCESS, 0, R.raw.bomb, 4, 5));
-        siteInfoList.add(Arrays.asList("烏龜池", "我就是愛玩水", SUCCESS, 1, R.raw.turtle1, 4, 5));
-        siteInfoList.add(Arrays.asList("生態池", "我就是愛吃菜", FAILED, 2,R.raw.turtle2, 4, 5));
+        siteInfoList.add(Arrays.asList("大砲池", "我就是愛嘴砲", SUCCESS, 0, R.raw.bomb, 25.013554, 121.540795));
+        siteInfoList.add(Arrays.asList("烏龜池", "我就是愛玩水", SUCCESS, 1, R.raw.turtle1, 25.014100, 121.541816));
+        siteInfoList.add(Arrays.asList("生態池", "我就是愛吃菜", FAILED, 2,R.raw.turtle2, 25.013396, 121.542155));
 
     }
     public List getSiteInfoList() {

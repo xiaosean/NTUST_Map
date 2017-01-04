@@ -131,7 +131,7 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
                 .position(new LatLng(lat, lon))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_face_white_24dp))
                 .title("You are here."));
-//        ((NTUST_MAP_Fragment) ).checkLocation(currLoc);
+        ((NTUST_MapActivity) getActivity()).checkdistance(currLoc);
     }
 
     public void showUserPos() {
