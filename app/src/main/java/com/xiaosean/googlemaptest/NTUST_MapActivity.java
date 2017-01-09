@@ -17,6 +17,7 @@ public class NTUST_MapActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private BottomBar bottomBar;
     private NTUST_MAP_Fragment map_fragment = new NTUST_MAP_Fragment();
+    private InfoFragment info_fragment = new InfoFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +53,15 @@ public class NTUST_MapActivity extends AppCompatActivity {
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-                try {
+//                try {
                     if (tabId == R.id.tab_map) {
                         fragmentManager.beginTransaction().replace(R.id.activity_ntust_map_fragment_container, map_fragment, "NTUST_MAP").commit();
                     } else if (tabId == R.id.tab_info) {
-                        fragmentManager.beginTransaction().replace(R.id.activity_ntust_map_fragment_container, new InfoFragment(), "INFO").commit();
+                        fragmentManager.beginTransaction().replace(R.id.activity_ntust_map_fragment_container, info_fragment, "INFO").commit();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             }
         });
 

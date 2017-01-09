@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class NTUST_MAP_Fragment extends Fragment {
     double outCampustDist = 0;
     int lastStatus = 1, currStatus = 1;
     Location mostRecentLocation = null;
+    GlobalVariable gv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,9 @@ public class NTUST_MAP_Fragment extends Fragment {
             //already created, just return
 //            Log.d("inflateFail", "inflate Failed");
         }
+
+        gv = (GlobalVariable) getActivity().getApplication();
+
         processViews(rootView);
         processControllers(rootView);
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flMap, mapFrag).commit();
@@ -113,7 +118,10 @@ public class NTUST_MAP_Fragment extends Fragment {
 
     private void testSucess(int i, String pool) {
         if (distance[i] * 1000 < 30) {
-//            ((GlobalVariable) getActivity().getApplication()).setSuccess(pool);
+            if (gv != null)
+                gv.setSuccess(pool);
+            else
+                Log.e("GlobalVariable", "not exist");
             SharedPreferences settings = rootView.getContext().getSharedPreferences("INFO", 0);
             SharedPreferences.Editor PE = settings.edit();
             PE.putString(pool, "達成");

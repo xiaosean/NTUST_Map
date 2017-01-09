@@ -174,6 +174,8 @@ public class InfoFragment extends Fragment {
 
             }
         });
+
+        Log.d("site_swipe", "added " + type + " " + value);
     }
 
     private void resetAllSite() {
