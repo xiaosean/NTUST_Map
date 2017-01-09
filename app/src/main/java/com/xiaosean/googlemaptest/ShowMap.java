@@ -118,7 +118,7 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
         currLoc = location;
         lat = currLoc.getLatitude();
         lon = currLoc.getLongitude();
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 14.0f));
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 17.0f));
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lon))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_face_white_24dp))
