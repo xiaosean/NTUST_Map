@@ -5,5 +5,7 @@
     <string name="tab_map">台科地圖</string>
     <string name="tab_info">個人紀錄</string>
     <string name="detail_action_bar_title">地點資訊</string>
+    <string name="SUCCESS">達成</string>
+    <string name="FAILED">尚未達成</string>
 
 </resources>

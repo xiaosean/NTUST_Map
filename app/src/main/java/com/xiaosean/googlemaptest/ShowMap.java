@@ -4,12 +4,10 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +27,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, OnMapReadyCallback {
@@ -139,10 +131,6 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
         map.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_face_white_24dp)).title(("You")));
     }
 
-    void updataePlaces() {
-        new GetPlaces().execute();
-
-    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -173,90 +161,4 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
         return (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED );
     }
-    class GetPlaces extends AsyncTask {
-        String placesRequestStr = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
-                "location=" + lat + "," + lon +
-                "&radius=2000" +
-                "&types=food" +
-                "&language=zh-tw" +
-                "&key=AIzaSyAyNiBKU2nHd7wzcwHJspgjtagx7d91h08";
-        private final int MAX_PLACES = 20;
-        private Marker[] placeMarkers;
-        boolean NODATA = false;
-        String result = null;
-
-
-        @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-            placeMarkers = new Marker[MAX_PLACES];
-            Log.i("test", "onPostExecute");
-
-            if(placeMarkers != null){
-                for (int pm = 0; pm < placeMarkers.length; ++pm){
-                    if(placeMarkers[pm] != null){
-                        placeMarkers[pm].remove();
-                    }
-                }
-            }
-            if(!NODATA){
-                try {
-                    JSONArray places = new JSONObject(result).getJSONArray("results");
-                    MarkerOptions[] aPlaceMarkerOpt = new MarkerOptions[places.length()];
-                    for (int p = 0; p < places.length(); ++p){
-                        JSONObject aPlace = places.getJSONObject(p);
-                        String placeAdd = aPlace.getString("vicinity");
-                        String placeName = aPlace.getString("name");
-                        JSONObject loc = aPlace.getJSONObject("geometry").getJSONObject("location");
-                        LatLng placeLL = new LatLng(Double.valueOf(loc.getString("lat")), Double.valueOf(loc.getString("lng")));
-                        Log.i("test aPlace", aPlace.toString());
-                        Log.i("test placeAdd", placeAdd);
-                        Log.i("test placeName", placeName);
-                        Log.i("test loc", loc.toString());
-                        Log.i("test placeLL", placeLL.toString());
-                        aPlaceMarkerOpt[p] = new MarkerOptions()
-                                .position(placeLL)
-                                .title(placeName)
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.red_point))
-                                .snippet(placeAdd);
-                        placeMarkers[p] = map.addMarker(aPlaceMarkerOpt[p]);
-                    }
-                    Log.i("test onPostExecute for", String.valueOf(places.length()));
-
-                }
-                catch (Exception e){
-                    Log.i("test", e.toString());
-
-                }
-            }
-        }
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            try{
-                OkHttpClient mHttpClient = new OkHttpClient();
-                Log.i("test placesRequestStr", placesRequestStr);
-                Request request = new Request.Builder().url(placesRequestStr).build();
-                Response response = mHttpClient.newCall(request).execute();
-                if(response.isSuccessful()){
-                    result = response.body().string();
-
-                    Log.i("test isSuccessful", result);
-
-                }
-                else{
-                    Log.i("test result", result);
-
-                }
-                NODATA = false;
-            }
-            catch (Exception e){
-                Log.i("test", e.toString());
-                NODATA = true;
-
-            }
-            return null;
-        }
-    }
-
 }

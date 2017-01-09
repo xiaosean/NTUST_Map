@@ -20,9 +20,7 @@ import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class InfoFragment extends Fragment {
@@ -170,6 +168,7 @@ public class InfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("click", "del");
+                ((GlobalVariable) getActivity().getApplication()).setFAILED(siteId);
                 swipeValue.setText(FAILED);
                 swipeLayout.setBackgroundColor(getResources().getColor(R.color.inner_gray));
 

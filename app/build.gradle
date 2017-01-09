@@ -27,7 +27,6 @@ dependencies {
     compile 'com.afollestad:easyvideoplayer:0.3.0'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
-    compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'com.google.android.gms:play-services-location:10.0.1'
     compile 'com.android.support:design:24.2.1'
     compile 'com.roughike:bottom-bar:2.0.2'

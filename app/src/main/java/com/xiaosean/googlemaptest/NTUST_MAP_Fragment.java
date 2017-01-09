@@ -4,6 +4,7 @@ package com.xiaosean.googlemaptest;
  * Created by Xiao on 2016/12/25.
  */
 
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -66,19 +67,19 @@ public class NTUST_MAP_Fragment extends Fragment {
     }
 
     private void processViews(View view) {
-        txtGoal = (TextView) view.findViewById(R.id.fragment_ntust_map_goal);
-        btnVin = (Button) view.findViewById(R.id.btnVin);
+//        txtGoal = (TextView) view.findViewById(R.id.fragment_ntust_map_goal);
+//        btnVin = (Button) view.findViewById(R.id.btnVin);
         mapFrag = ShowMap.newInstance(ntustCenter[0], ntustCenter[1]);
 
     }
 
     private void processControllers(View view) {
-        btnVin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ShowMap) mapFrag).updataePlaces();
-            }
-        });
+//        btnVin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((ShowMap) mapFrag).updataePlaces();
+//            }
+//        });
     }
 
     public void checkLocation(Location loc) {
@@ -100,9 +101,25 @@ public class NTUST_MAP_Fragment extends Fragment {
             double[] point2 = new double[]{(double) pool_locations[i][0], (double) pool_locations[i][1]};
             distance[i] = distHaversine(point1, point2);
         }
-        txtcanon.setText(String.format("%.4f", distance[0]));
-        txtturtle.setText(String.format("%.4f", distance[1]));
-        txtnature.setText(String.format("%.4f", distance[2]));
+
+        testSucess(0, "大砲池");
+        testSucess(1, "烏龜池");
+        testSucess(2, "生態池");
+
+        txtcanon.setText("大炮池 " + String.format("%.0f", distance[0] * 1000) + "m");
+        txtturtle.setText("烏龜池" + String.format("%.0f", distance[1] * 1000) + "m");
+        txtnature.setText("生態池" + String.format("%.0f", distance[2] * 1000) + "m");
+    }
+
+    private void testSucess(int i, String pool) {
+        if (distance[i] * 1000 < 30) {
+//            ((GlobalVariable) getActivity().getApplication()).setSuccess(pool);
+            SharedPreferences settings = rootView.getContext().getSharedPreferences("INFO", 0);
+            SharedPreferences.Editor PE = settings.edit();
+            PE.putString(pool, "達成");
+            PE.commit();
+//            int index = ((GlobalVariable) getActivity().getApplication()).findSiteIdByName(pool);
+        }
     }
 
     private double distHaversine(double[] p1, double[] p2) {
