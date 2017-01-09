@@ -48,7 +48,7 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.map, container, false);
         mapView = (MapView) v.findViewById(R.id.mvMap);
         return v;
@@ -71,7 +71,7 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
         LocationRequest mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(MIN_TIME);
-        if(checkPermission())
+        if (checkPermission())
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
 
     }
@@ -90,7 +90,7 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         lat = getArguments().getDouble("lat");
-        lat = getArguments().getDouble("lon");
+        lon = getArguments().getDouble("lon");
     }
 
     @Override
@@ -135,7 +135,7 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        if(checkPermission())
+        if (checkPermission())
             map.setMyLocationEnabled(true);
         MapsInitializer.initialize(ShowMap.this.getActivity());
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 14.0f));
@@ -154,11 +154,18 @@ public class ShowMap extends Fragment implements GoogleApiClient.ConnectionCallb
                 return false;
             }
         });
+        for (int i = 0; i < 3; i++) {
+            map.addMarker(new MarkerOptions()
+                            .position(new LatLng(NTUST_MAP_Fragment.pool_locations[i][0], NTUST_MAP_Fragment.pool_locations[i][1]))
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_point))
+            .title(NTUST_MAP_Fragment.pool_name[i]));
+        }
     }
+
     // Check for permission to access Location
     private boolean checkPermission() {
         // Ask for permission if it wasn't granted yet
         return (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED );
+                == PackageManager.PERMISSION_GRANTED);
     }
 }

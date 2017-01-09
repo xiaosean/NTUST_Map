@@ -27,7 +27,8 @@ public class NTUST_MAP_Fragment extends Fragment {
             "25.015941&&121.542484",
             "25.012537&&121.545178",
             "25.010272&&121.541745"};
-    double[][] pool_locations = {{25.013554,121.540795},{25.014100,121.541816},{25.013396,121.542155}};
+    static public double[][] pool_locations = {{25.013554,121.540795},{25.014100,121.541816},{25.013396,121.542155}};
+    static public String[] pool_name = {"大砲池", "烏龜池", "生態池"};
     double[] distance = {0, 0, 0};
     double[] ntustCenter = {25.013421, 121.541785};
     double outCampustDist = 0;
@@ -107,9 +108,8 @@ public class NTUST_MAP_Fragment extends Fragment {
             distance[i] = distHaversine(point1, point2);
         }
 
-        testSucess(0, "大砲池");
-        testSucess(1, "烏龜池");
-        testSucess(2, "生態池");
+        for (int i = 0; i < 3; i++)
+            testSucess(i, pool_name[i]);
 
         txtcanon.setText("大炮池 " + String.format("%.0f", distance[0] * 1000) + "m");
         txtturtle.setText("烏龜池" + String.format("%.0f", distance[1] * 1000) + "m");
